@@ -1,0 +1,10 @@
+<div #message (scroll)="loadNewData(id)" *ngIf="currentUser"
+     class="chat-history row" id="chat-message">
+  <ul id="history">
+    <ng-container *ngFor="let message of listMessage">
+      <li [className]="currentUser.id == message.sender.id ? 'me' : 'you'">
+        {{message.content}}
+      </li>
+    </ng-container>
+  </ul>
+</div>

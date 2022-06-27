@@ -1,0 +1,94 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Danh sách người dùng</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a routerLink="/admin">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Danh sách người dùng</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"></h3>
+      <div class="card-tools">
+        <a routerLink="create" class="btn btn-primary float-lg-right">
+          Tạo mới
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered" id="table-user">
+        <thead>
+        <tr>
+          <th style="width: 10px">#</th>
+          <th>Tên người dùng</th>
+          <th>Email</th>
+          <th>Quyền</th>
+          <th style="width: 160px"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let user of listUser; index as i">
+          <tr *ngIf="i != 0">
+            <td>{{i}}</td>
+            <td>
+              {{user.fullName}}
+            </td>
+            <td>{{user.email}}</td>
+            <td>
+              <ng-container *ngFor="let role of user.roles; index as i">
+                <span>{{role.name}}</span>
+                <span *ngIf="user.roles.length -1 != i">,</span>
+              </ng-container>
+            </td>
+            <td>
+              <div class="row">
+                <div class="col-6">
+                  <a [routerLink]="['edit',user.id]" class="btn btn-block btn-primary" style="color: white">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                </div>
+                <div class="col-6">
+                  <button type="button" class="btn btn-block btn-danger" style="color: white" data-toggle="modal"
+                          data-target="#modal-delete" (click)="getUserId(user.id)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal fade" id="modal-delete">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Xóa người dùng</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc muốn xóa người dùng này</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-danger" (click)="deleteUser()">Xóa</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</section>

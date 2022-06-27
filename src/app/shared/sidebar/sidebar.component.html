@@ -1,0 +1,91 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a routerLink="" class="brand-link">
+    <span class="brand-text font-weight-light">Shop</span>
+  </a>
+
+<!--   Sidebar-->
+  <div class="sidebar">
+    <!-- Sidebar user (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <i class="fa fa-user fa-2x" style="color: white"></i>
+      </div>
+      <div class="info">
+        <a [routerLink]="'/chart'" class="d-block">{{currentUser.email}}</a>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a routerLink="/admin" class="nav-link">
+            <i class="nav-icon fas fa-chart-bar"></i>
+            <p>
+              Biểu đồ
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/users" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Người dùng
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/product" class="nav-link">
+            <i class="nav-icon fab fa-product-hunt"></i>
+            <p>
+              Sản phẩm
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/category" class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+            <p>
+              Danh mục
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/warehouse" class="nav-link">
+            <i class="nav-icon fas fa-home"></i>
+            <p>
+              Nhà kho
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/warehouse-bill" class="nav-link">
+            <i class="nav-icon fas fa-file-contract"></i>
+            <p>
+              Phiếu nhập kho
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/bills" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              Phiếu xuất kho
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/orders" class="nav-link">
+            <i class="nav-icon fas fa-money-bill"></i>
+            <p>
+              Đơn hàng
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+<!--   /.sidebar-->
+</aside>

@@ -1,0 +1,89 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Thông tin chi tiết hóa đơn xuất</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a routerLink="/admin">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Chi tiết hóa đơn xuất</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content" *ngIf="currentBill != null">
+
+  <!-- Default box -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Phiếu xuất {{currentBill.code}}</h3>
+
+      <div class="card-tools">
+        <a routerLink="create" class="btn btn-primary float-lg-right">
+          Tạo mới
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered" id="table-bill-detail">
+        <thead>
+        <tr>
+          <th style="width: 10px">#</th>
+          <th>Tên sản phẩm</th>
+          <th>Số lượng</th>
+          <th style="width: 160px"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let billDetail of listBillDetail; index as i">
+          <td>{{i + 1}}</td>
+          <td *ngIf="billDetail.product!=null">{{billDetail.product.name}}</td>
+          <td>{{billDetail.amount}}</td>
+          <td>
+            <div class="row">
+              <div class="col-6">
+                <a [routerLink]="['edit',billDetail.id]" class="btn btn-block btn-primary" style="color: white">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-block btn-danger" style="color: white" data-toggle="modal"
+                        data-target="#modal-delete" (click)="getBillDetailId(billDetail.id)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+  <div class="modal fade" id="modal-delete">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Xóa chi tiết phiếu xuất</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc muốn xóa chi tiết phiếu nhập này</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-danger" (click)="deleteBillDetail()">Xóa</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</section>
